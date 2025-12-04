@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard IRS - Sistem Pelaporan Terpusat</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar akan dimuat via JavaScript -->
+        <aside class="sidebar" id="sidebar">
+            <!-- Sidebar content di-load dari components/sidebar.html -->
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="main-content" id="mainContent">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <h2><i class="fas fa-tachometer-alt"></i> <span id="page-title">Dashboard IRS</span></h2>
+                    <div class="breadcrumb" id="breadcrumb">
+                        <span>Dashboard</span>
+                    </div>
+                </div>
+                <div class="user-info">
+                    <div class="user-avatar">
+                        <img src="https://ui-avatars.com/api/?name=Administrator&background=3498db&color=fff" alt="User Avatar">
+                    </div>
+                    <div class="user-details">
+                        <p class="user-name">Administrator</p>
+                        <p class="user-role">Admin</p>
+                    </div>
+                    <div class="notifications">
+                        <button class="notification-btn">
+                            <i class="fas fa-bell"></i>
+                            <span class="notification-count">3</span>
+                        </button>
+                    </div>
+                </div>
+            </header>
+            
+            <!-- Home Page Content -->
+            <div id="home-page" class="content-page active">
+                <!-- Welcome Banner -->
+                <section class="welcome-banner">
+                    <div class="welcome-content">
+                        <h3>Selamat datang di Sistem Pelaporan Terpusat</h3>
+                        <p>Kelola dan pantau semua laporan APOLO, E-Reporting, dan SIPINA dalam satu dashboard yang terintegrasi</p>
+                        <div class="welcome-stats">
+                            <div class="stat-item">
+                                <i class="fas fa-file-alt"></i>
+                                <div>
+                                    <span class="stat-number">24</span>
+                                    <span class="stat-label1">Laporan Aktif</span>
+                                </div>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-check-circle"></i>
+                                <div>
+                                    <span class="stat-number">18</span>
+                                    <span class="stat-label1">Terselesaikan</span>
+                                </div>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-clock"></i>
+                                <div>
+                                    <span class="stat-number">5</span>
+                                    <span class="stat-label1">Dalam Proses</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="welcome-illustration">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                </section>
+                
+                <!-- Quick Access Cards -->
+                <!-- Quick Access Cards -->
+                <div class="cards-container">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon apolo">
+                                <!-- Ganti icon FontAwesome dengan logo lokal -->
+                                <img src="assets/logos/apolo-logo.png" alt="APOLO Logo" class="logo-img">
+                            </div>
+                            <h4>APOLO</h4>
+                        </div>
+                        <p>Aplikasi Pelaporan Online yang dikembangkan oleh Otoritas Jasa Keuangan (OJK) untuk melayani Lembaga Jasa Keuangan (LJK) dalam menyampaikan kewajiban pelaporan secara daring. Aplikasi ini bertujuan untuk menyederhanakan, menstandarisasi, dan meningkatkan efisiensi proses pelaporan ke OJK.</p>
+                        <div class="card-footer">
+                            <span class="card-info"><i class="fas fa-file-alt"></i> 12 Laporan</span>
+                            <button class="card-btn" data-page="apolo">Akses <i class="fas fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon ereporting">
+                                <!-- Ganti icon FontAwesome dengan logo lokal -->
+                                <img src="assets/logos/ereporting-logo.png" alt="E-Reporting Logo" class="logo-img">
+                            </div>
+                            <h4>E-Reporting</h4>
+                        </div>
+                        <p>sistem pelaporan elektronik yang digunakan oleh emiten atau perusahaan publik untuk menyampaikan laporan secara elektronik kepada Otoritas Jasa Keuangan.</p>
+                        <div class="card-footer">
+                            <span class="card-info"><i class="fas fa-file-alt"></i> 8 Laporan</span>
+                            <button class="card-btn" data-page="estatement">Akses <i class="fas fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon sipina">
+                                <!-- Ganti icon FontAwesome dengan logo lokal -->
+                                <img src="assets/logos/sipina-logo.png" alt="SIPINA Logo" class="logo-img">
+                            </div>
+                            <h4>SIPINA</h4>
+                        </div>
+                        <p> Laporan informasi nasabah asing disampaikan secara daring melalui sistem penyampaian informasi nasabah asing</p>
+                        <div class="card-footer">
+                            <span class="card-info"><i class="fas fa-file-alt"></i> 4 Laporan</span>
+                            <button class="card-btn" data-page="sipina">Akses <i class="fas fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Recent Activity Section -->
+                <section class="table-section">
+                    <div class="section-header">
+                        <div class="section-title">
+                            <i class="fas fa-history"></i>
+                            <h3>Aktivitas Terbaru</h3>
+                        </div>
+                        <button class="view-all-btn">Lihat Semua <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                    
+                    <div class="activity-list">
+                        <div class="activity-item">
+                            <div class="activity-icon success">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="activity-details">
+                                <p class="activity-title">Laporan Keuangan Q1 2023 telah disetujui</p>
+                                <p class="activity-time">2 jam yang lalu</p>
+                            </div>
+                            <span class="activity-badge apolo-badge">APOLO</span>
+                        </div>
+                        
+                        <div class="activity-item">
+                            <div class="activity-icon warning">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="activity-details">
+                                <p class="activity-title">Laporan E-Statement memerlukan revisi</p>
+                                <p class="activity-time">5 jam yang lalu</p>
+                            </div>
+                            <span class="activity-badge ereporting-badge">E-REPORTING</span>
+                        </div>
+                        
+                        <div class="activity-item">
+                            <div class="activity-icon danger">
+                                <i class="fas fa-times"></i>
+                            </div>
+                            <div class="activity-details">
+                                <p class="activity-title">Laporan SIPINA ditolak oleh sistem</p>
+                                <p class="activity-time">Kemarin, 14:30</p>
+                            </div>
+                            <span class="activity-badge sipina-badge">SIPINA</span>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Recent Reports Table -->
+                <section class="table-section">
+                    <div class="section-header">
+                        <div class="section-title">
+                            <i class="fas fa-table"></i>
+                            <h3>Laporan Terbaru</h3>
+                        </div>
+                        <div class="section-actions">
+                            <div class="search-box">
+                                <i class="fas fa-search"></i>
+                                <input type="text" id="home-search" placeholder="Cari laporan...">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="table-responsive">
+                        <table id="home-table">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Jenis Laporan</th>
+                                    <th>Sistem</th>
+                                    <th>Periode</th>
+                                    <th>Tanggal Submit</th>
+                                    <th>Status</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="home-table-body">
+                                <!-- Data akan diisi oleh JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="table-footer">
+                        <div class="table-info">
+                            Menampilkan 5 dari 24 laporan
+                        </div>
+                        <div class="pagination">
+                            <button class="pagination-btn disabled"><i class="fas fa-chevron-left"></i></button>
+                            <button class="pagination-btn active">1</button>
+                            <button class="pagination-btn">2</button>
+                            <button class="pagination-btn">3</button>
+                            <button class="pagination-btn"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            
+            <!-- APOLO Reports Page -->
+            <div id="apolo-page" class="content-page">
+                <div class="page-header">
+                    <div class="page-title">
+                        <div class="page-icon apolo">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div>
+                            <h3>Laporan APOLO</h3>
+                            <p class="page-subtitle">Kelola semua laporan sistem APOLO di sini</p>
+                        </div>
+                    </div>
+                    <div class="page-actions">
+                        <button class="action-btn export-btn">
+                            <i class="fas fa-download"></i> Export
+                        </button>
+                        <!-- <button class="action-btn primary-btn">
+                            <i class="fas fa-plus"></i> Laporan Baru
+                        </button> -->
+                    </div>
+                </div>
+                
+                <!-- Stats Overview -->
+                <div class="stats-overview">
+                    <div class="stat-card">
+                        <div class="stat-icon total">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <div class="stat-details">
+                            <span class="stat-value">12</span>
+                            <span class="stat-label">Total Laporan</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon success">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-details">
+                            <span class="stat-value">8</span>
+                            <span class="stat-label">Berhasil</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon warning">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-details">
+                            <span class="stat-value">2</span>
+                            <span class="stat-label">Terlambat</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon danger">
+                            <i class="fas fa-times-circle"></i>
+                        </div>
+                        <div class="stat-details">
+                            <span class="stat-value">2</span>
+                            <span class="stat-label">Tidak Berhasil</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Filter Section -->
+                <div class="filter-section">
+                    <div class="filter-header">
+                        <h4><i class="fas fa-filter"></i> Filter Laporan</h4>
+                        <button class="clear-filters">Bersihkan Filter</button>
+                    </div>
+                    <div class="filter-controls">
+                        <div class="filter-group">
+                            <label for="filter-jenis">Jenis Laporan</label>
+                            <select id="filter-jenis" class="filter-select">
+                                <option value="all">Semua Jenis</option>
+                                <option value="keuangan">Laporan Keuangan</option>
+                                <option value="kinerja">Laporan Kinerja</option>
+                                <option value="audit">Laporan Audit</option>
+                                <option value="kepatuhan">Laporan Kepatuhan</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label for="filter-status">Status</label>
+                            <select id="filter-status" class="filter-select">
+                                <option value="all">Semua Status</option>
+                                <option value="berhasil">Berhasil</option>
+                                <option value="terlambat">Terlambat</option>
+                                <option value="tidak-berhasil">Tidak Berhasil</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label for="filter-periode">Periode</label>
+                            <select id="filter-periode" class="filter-select">
+                                <option value="all">Semua Periode</option>
+                                <option value="q1">Q1 2023</option>
+                                <option value="q2">Q2 2023</option>
+                                <option value="q3">Q3 2023</option>
+                                <option value="q4">Q4 2023</option>
+                                <option value="2022">Tahun 2022</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label for="filter-tanggal">Tanggal Submit</label>
+                            <input type="date" id="filter-tanggal" class="filter-input">
+                        </div>
+                        
+                        <div class="filter-actions">
+                            <button class="filter-btn secondary" id="reset-filter">
+                                <i class="fas fa-redo"></i> Reset
+                            </button>
+                            <button class="filter-btn primary" id="apply-filter">
+                                <i class="fas fa-filter"></i> Terapkan Filter
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Search Box -->
+                <div class="search-container">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="search-apolo" placeholder="Cari laporan APOLO...">
+                        <button class="search-btn" id="search-btn">
+                            <i class="fas fa-search"></i> Cari
+                        </button>
+                    </div>
+                    <div class="search-info">
+                        <span id="search-result-count">12 laporan ditemukan</span>
+                    </div>
+                </div>
+                
+                <!-- Table Section -->
+                <div class="table-section">
+                    <div class="table-responsive">
+                        <table id="apolo-table">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Jenis Laporan</th>
+                                    <th>Periode</th>
+                                    <th>Tanggal Submit</th>
+                                    <th>Deadline</th>
+                                    <th>Status</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="apolo-table-body">
+                                <!-- Data akan diisi oleh JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div id="no-data-apolo" class="no-data">
+                        <i class="fas fa-clipboard-list fa-3x"></i>
+                        <h4>Tidak ada data laporan</h4>
+                        <p>Tidak ada laporan yang sesuai dengan kriteria pencarian atau filter</p>
+                    </div>
+                    
+                    <div class="table-footer">
+                        <div class="table-info">
+                            Menampilkan <span id="apolo-showing">12</span> dari <span id="apolo-total">12</span> laporan
+                        </div>
+                        <div class="pagination">
+                            <button class="pagination-btn disabled"><i class="fas fa-chevron-left"></i></button>
+                            <button class="pagination-btn active">1</button>
+                            <button class="pagination-btn">2</button>
+                            <button class="pagination-btn">3</button>
+                            <button class="pagination-btn"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Other Pages (Placeholder) -->
+            <div id="estatement-page" class="content-page">
+                <div class="table-section">
+                    <div class="section-title">
+                        <i class="fas fa-file-signature"></i>
+                        <h3>Laporan e-Statement</h3>
+                    </div>
+                    <div class="coming-soon">
+                        <i class="fas fa-tools fa-3x"></i>
+                        <h4>Halaman Sedang Dalam Pengembangan</h4>
+                        <p>Fitur ini akan segera hadir dalam waktu dekat</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="sipina-page" class="content-page">
+                <div class="table-section">
+                    <div class="section-title">
+                        <i class="fas fa-gavel"></i>
+                        <h3>Laporan SIPINA</h3>
+                    </div>
+                    <div class="coming-soon">
+                        <i class="fas fa-tools fa-3x"></i>
+                        <h4>Halaman Sedang Dalam Pengembangan</h4>
+                        <p>Fitur ini akan segera hadir dalam waktu dekat</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="administrasi-page" class="content-page">
+                <div class="table-section">
+                    <div class="section-title">
+                        <i class="fas fa-cogs"></i>
+                        <h3>Administrasi</h3>
+                    </div>
+                    <div class="coming-soon">
+                        <i class="fas fa-tools fa-3x"></i>
+                        <h4>Halaman Sedang Dalam Pengembangan</h4>
+                        <p>Fitur ini akan segera hadir dalam waktu dekat</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="audit-page" class="content-page">
+                <div class="table-section">
+                    <div class="section-title">
+                        <i class="fas fa-history"></i>
+                        <h3>Audit Log</h3>
+                    </div>
+                    <div class="coming-soon">
+                        <i class="fas fa-tools fa-3x"></i>
+                        <h4>Halaman Sedang Dalam Pengembangan</h4>
+                        <p>Fitur ini akan segera hadir dalam waktu dekat</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="download-page" class="content-page">
+                <div class="table-section">
+                    <div class="section-title">
+                        <i class="fas fa-download"></i>
+                        <h3>Download</h3>
+                    </div>
+                    <div class="coming-soon">
+                        <i class="fas fa-tools fa-3x"></i>
+                        <h4>Halaman Sedang Dalam Pengembangan</h4>
+                        <p>Fitur ini akan segera hadir dalam waktu dekat</p>
+                    </div>
+                </div>
+            </div>
+
+                        <!-- About Us Page -->
+            <div id="about-page" class="content-page">
+                <div class="page-header">
+                    <div class="page-title">
+                        <div class="page-icon about">
+                            <i class="fas fa-info-circle"></i>
+                        </div>
+                        <div>
+                            <h3>Tentang Kami</h3>
+                            <p class="page-subtitle">Mengenal lebih dekat dengan Sistem Pelaporan Terpusat IRS</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- About Content -->
+                <div class="about-container">
+                    <div class="about-hero">
+                        <div class="about-hero-content">
+                            <h1>Mengubah Cara Anda Melaporkan</h1>
+                            <p>IRS adalah sistem pelaporan terpusat yang dirancang untuk menyederhanakan dan mengotomatisasi proses pelaporan keuangan dan operasional</p>
+                            <div class="about-stats">
+                                <div class="about-stat">
+                                    <span class="stat-number">500+</span>
+                                    <span class="stat-label">Pengguna Aktif</span>
+                                </div>
+                                <div class="about-stat">
+                                    <span class="stat-number">10K+</span>
+                                    <span class="stat-label">Laporan Diproses</span>
+                                </div>
+                                <div class="about-stat">
+                                    <span class="stat-number">99.8%</span>
+                                    <span class="stat-label">Kepuasan Pengguna</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="about-hero-image">
+                            <i class="fas fa-chart-network"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- Mission Vision Section -->
+                    <div class="mission-vision">
+                        <div class="mission-card">
+                            <div class="mission-icon">
+                                <i class="fas fa-bullseye"></i>
+                            </div>
+                            <h4>Misi Kami</h4>
+                            <p>Menyediakan platform pelaporan yang terintegrasi, aman, dan efisien untuk meningkatkan transparansi dan akuntabilitas dalam pelaporan keuangan dan operasional.</p>
+                        </div>
+                        <div class="vision-card">
+                            <div class="vision-icon">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                            <h4>Visi Kami</h4>
+                            <p>Menjadi sistem pelaporan terdepan di Indonesia yang mendukung transformasi digital sektor keuangan dan bisnis.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Features Section -->
+                    <div class="features-section">
+                        <div class="section-header">
+                            <div class="section-title">
+                                <i class="fas fa-star"></i>
+                                <h3>Fitur Unggulan</h3>
+                            </div>
+                        </div>
+                        <div class="features-grid">
+                            <div class="feature-card">
+                                <div class="feature-icon security">
+                                    <i class="fas fa-shield-alt"></i>
+                                </div>
+                                <h5>Keamanan Terjamin</h5>
+                                <p>Dilengkapi dengan enkripsi end-to-end dan sistem autentikasi multi-faktor untuk melindungi data sensitif.</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon integration">
+                                    <i class="fas fa-sync-alt"></i>
+                                </div>
+                                <h5>Integrasi Lengkap</h5>
+                                <p>Terintegrasi dengan berbagai sistem seperti APOLO, E-Reporting, dan SIPINA dalam satu platform.</p>
+                            </div>
+                            <!-- <div class="feature-card">
+                                <div class="feature-icon automation">
+                                    <i class="fas fa-robot"></i>
+                                </div>
+                                <h5>Otomatisasi Cerdas</h5>
+                                <p>Proses pelaporan otomatis dengan notifikasi real-time dan reminder deadline yang tepat waktu.</p>
+                            </div> -->
+                            <div class="feature-card">
+                                <div class="feature-icon analytics">
+                                    <i class="fas fa-chart-bar"></i>
+                                </div>
+                                <h5>Analitik Lanjutan</h5>
+                                <p>Dashboard analitik dengan visualisasi data yang interaktif untuk pengambilan keputusan yang lebih baik.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Team Section -->
+                    <div class="team-section">
+                        <div class="section-header">
+                            <div class="section-title">
+                                <i class="fas fa-users"></i>
+                                <h3>Tim Kami</h3>
+                            </div>
+                        </div>
+                        <div class="team-grid">
+                            <div class="team-card">
+                                <div class="team-avatar">
+                                    <i class="fas fa-user-circle"></i>
+                                </div>
+                                <h5>John doe</h5>
+                                <p class="team-role">Head of Development</p>
+                                <p class="team-desc">Bertanggung jawab atas pengembangan sistem dan implementasi teknologi terkini.</p>
+                            </div>
+                            <div class="team-card">
+                                <div class="team-avatar">
+                                    <i class="fas fa-user-circle"></i>
+                                </div>
+                                <h5>John doe</h5>
+                                <p class="team-role">Product Manager</p>
+                                <p class="team-desc">Mengawasi pengembangan produk dan memastikan kepuasan pengguna.</p>
+                            </div>
+                            <div class="team-card">
+                                <div class="team-avatar">
+                                    <i class="fas fa-user-circle"></i>
+                                </div>
+                                <h5>John doe</h5>
+                                <p class="team-role">Security Specialist</p>
+                                <p class="team-desc">Memastikan keamanan sistem dan perlindungan data pengguna.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- FAQ Page -->
+            <div id="faq-page" class="content-page">
+                <div class="page-header">
+                    <div class="page-title">
+                        <div class="page-icon faq">
+                            <i class="fas fa-question-circle"></i>
+                        </div>
+                        <div>
+                            <h3>Pertanyaan yang Sering Diajukan</h3>
+                            <p class="page-subtitle">Temukan jawaban untuk pertanyaan umum tentang sistem IRS</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- FAQ Content -->
+                <div class="faq-container">
+                    <!-- Search FAQ -->
+                    <div class="faq-search">
+                        <div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="search-faq" placeholder="Cari pertanyaan...">
+                        </div>
+                    </div>
+                    
+                    <!-- FAQ Categories -->
+                    <div class="faq-categories">
+                        <button class="faq-category active" data-category="all">Semua</button>
+                        <button class="faq-category" data-category="general">Umum</button>
+                        <button class="faq-category" data-category="apolo">APOLO</button>
+                        <button class="faq-category" data-category="ereporting">E-Reporting</button>
+                        <button class="faq-category" data-category="sipina">SIPINA</button>
+                        <button class="faq-category" data-category="technical">Teknis</button>
+                    </div>
+                    
+                    <!-- FAQ List -->
+                    <div class="faq-list">
+                        <!-- General Questions -->
+                        <div class="faq-category-section" data-category="general">
+                            <h4 class="faq-category-title"><i class="fas fa-globe"></i> Pertanyaan Umum</h4>
+                            <div class="faq-item">
+                                <div class="faq-question">
+                                    <span>Apa itu Sistem Pelaporan Terpusat IRS?</span>
+                                    <i class="fas fa-chevron-down"></i>
+                                </div>
+                                <div class="faq-answer">
+                                    <p>Sistem Pelaporan Terpusat IRS adalah platform terintegrasi yang memungkinkan pengguna untuk mengelola berbagai jenis laporan keuangan dan operasional dalam satu sistem. Platform ini mencakup modul APOLO, E-Reporting, dan SIPINA.</p>
+                                </div>
+                            </div>
+                            <!-- <div class="faq-item">
+                                <div class="faq-question">
+                                    <span>Bagaimana cara mendaftar sebagai pengguna?</span>
+                                    <i class="fas fa-chevron-down"></i>
+                                </div>
+                                <div class="faq-answer">
+                                    <p>Untuk mendaftar sebagai pengguna, Anda perlu menghubungi administrator sistem di organisasi Anda. Administrator akan membuatkan akun dan memberikan akses yang sesuai dengan peran dan tanggung jawab Anda.</p>
+                                </div>
+                            </div>
+                            <div class="faq-item">
+                                <div class="faq-question">
+                                    <span>Apakah sistem ini gratis?</span>
+                                    <i class="fas fa-chevron-down"></i>
+                                </div>
+                                <div class="faq-answer">
+                                    <p>Sistem ini tersedia untuk organisasi yang bekerja sama dengan penyedia layanan. Biaya layanan tergantung pada paket yang dipilih dan jumlah pengguna. Hubungi tim penjualan kami untuk informasi lebih lanjut.</p>
+                                </div>
+                            </div> -->
+                        </div>
+                        
+                        <!-- APOLO Questions -->
+                        <div class="faq-category-section" data-category="apolo">
+                            <h4 class="faq-category-title"><i class="fas fa-chart-line"></i> Laporan APOLO</h4>
+                            <div class="faq-item">
+                                <div class="faq-question">
+                                    <span>Bagaimana cara mengirim laporan APOLO?</span>
+                                    <i class="fas fa-chevron-down"></i>
+                                </div>
+                                <div class="faq-answer">
+                                    <p>Untuk mengirim laporan APOLO:
+                                        1. Masuk ke halaman Laporan APOLO
+                                        2. Klik tombol "Tambah Laporan"
+                                        3. Isi formulir dengan data yang diperlukan
+                                        4. Unggah dokumen pendukung
+                                        5. Klik "Kirim" untuk mengajukan laporan</p>
+                                </div>
+                            </div>
+                            <div class="faq-item">
+                                <div class="faq-question">
+                                    <span>Berapa lama waktu proses verifikasi laporan?</span>
+                                    <i class="fas fa-chevron-down"></i>
+                                </div>
+                                <div class="faq-answer">
+                                    <p>Waktu proses verifikasi bervariasi tergantung pada jenis laporan:
+                                        - Laporan rutin: 1-3 hari kerja
+                                        - Laporan khusus: 3-5 hari kerja
+                                        - Laporan prioritas: 24 jam
+                                        Anda dapat memantau status laporan di dashboard.</p>
+                                </div>
+                            </div>
+                            <div class="faq-item">
+                                <div class="faq-question">
+                                    <span>Apa yang harus dilakukan jika laporan ditolak?</span>
+                                    <i class="fas fa-chevron-down"></i>
+                                </div>
+                                <div class="faq-answer">
+                                    <p>Jika laporan Anda ditolak, sistem akan memberikan alasan penolakan. Anda perlu:
+                                        1. Memperbaiki kesalahan yang disebutkan
+                                        2. Mengunggah dokumen yang sudah diperbaiki
+                                        3. Mengajukan kembali laporan
+                                        4. Memantau status revisi</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- E-Reporting Questions -->
+                        <div class="faq-category-section" data-category="ereporting">
+                            <h4 class="faq-category-title"><i class="fas fa-file-signature"></i> E-Reporting</h4>
+                            <div class="faq-item">
+                                <div class="faq-question">
+                                    <span>Format file apa saja yang didukung untuk E-Reporting?</span>
+                                    <i class="fas fa-chevron-down"></i>
+                                </div>
+                                <div class="faq-answer">
+                                    <p>Sistem mendukung berbagai format file:
+                                        - Dokumen: PDF, DOC, DOCX
+                                        - Spreadsheet: XLS, XLSX, CSV
+                                        - Presentasi: PPT, PPTX
+                                        - Gambar: JPG, PNG, GIF
+                                        - Ukuran maksimal file: 10MB per file</p>
+                                </div>
+                            </div>
+                            <div class="faq-item">
+                                <div class="faq-question">
+                                    <span>Bagaimana cara melacak status E-Statement?</span>
+                                    <i class="fas fa-chevron-down"></i>
+                                </div>
+                                <div class="faq-answer">
+                                    <p>Anda dapat melacak status E-Statement melalui:
+                                        1. Dashboard utama - melihat status terbaru
+                                        2. Halaman Laporan e-Statement - melihat detail status
+                                        3. Notifikasi email - menerima update otomatis
+                                        4. Log aktivitas - melihat riwayat perubahan</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- SIPINA Questions -->
+                        <div class="faq-category-section" data-category="sipina">
+                            <h4 class="faq-category-title"><i class="fas fa-gavel"></i> SIPINA</h4>
+                            <div class="faq-item">
+                                <div class="faq-question">
+                                    <span>Apa perbedaan laporan SIPINA dengan laporan lainnya?</span>
+                                    <i class="fas fa-chevron-down"></i>
+                                </div>
+                                <div class="faq-answer">
+                                    <p>Laporan SIPINA khusus untuk pelaporan sanksi administratif DJK dengan karakteristik:
+                                        - Format khusus yang ditetapkan regulator
+                                        - Periode pelaporan yang spesifik
+                                        - Validasi data yang ketat
+                                        - Timeline yang tidak fleksibel
+                                        - Konsekuensi hukum jika terlambat</p>
+                                </div>
+                            </div>
+                            <div class="faq-item">
+                                <div class="faq-question">
+                                    <span>Kapan deadline pelaporan SIPINA?</span>
+                                    <i class="fas fa-chevron-down"></i>
+                                </div>
+                                <div class="faq-answer">
+                                    <p>Deadline pelaporan SIPINA adalah:
+                                        - Laporan triwulanan: 30 hari setelah akhir triwulan
+                                        - Laporan semesteran: 45 hari setelah akhir semester
+                                        - Laporan tahunan: 60 hari setelah akhir tahun fiskal
+                                        Sistem akan memberikan reminder 7 hari sebelum deadline.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Technical Questions -->
+                        <div class="faq-category-section" data-category="technical">
+                            <h4 class="faq-category-title"><i class="fas fa-tools"></i> Dukungan Teknis</h4>
+                            <div class="faq-item">
+                                <div class="faq-question">
+                                    <span>Browser apa yang didukung oleh sistem?</span>
+                                    <i class="fas fa-chevron-down"></i>
+                                </div>
+                                <div class="faq-answer">
+                                    <p>Sistem kompatibel dengan browser modern:
+                                        - Google Chrome (versi 80+)
+                                        - Mozilla Firefox (versi 75+)
+                                        - Safari (versi 13+)
+                                        - Microsoft Edge (versi 80+)
+                                        Disarankan menggunakan versi terbaru untuk pengalaman optimal.</p>
+                                </div>
+                            </div>
+                            <div class="faq-item">
+                                <div class="faq-question">
+                                    <span>Bagaimana jika lupa password?</span>
+                                    <i class="fas fa-chevron-down"></i>
+                                </div>
+                                <div class="faq-answer">
+                                    <p>Jika lupa password:
+                                        1. Klik "Lupa Password" di halaman login
+                                        2. Masukkan email terdaftar
+                                        3. Cek email untuk link reset password
+                                        4. Ikuti instruksi di email
+                                        5. Buat password baru
+                                        Jika tidak menerima email, hubungi administrator.</p>
+                                </div>
+                            </div>
+                            <div class="faq-item">
+                                <div class="faq-question">
+                                    <span>Bagaimana cara menghubungi dukungan teknis?</span>
+                                    <i class="fas fa-chevron-down"></i>
+                                </div>
+                                <div class="faq-answer">
+                                    <p>Dukungan teknis tersedia melalui:
+                                        - Email: support@IRS-OJK.go.id
+                                        - Telepon: 021-1234-5678 (Senin-Jumat, 08:00-17:00)
+                                        - Chat langsung: Klik ikon chat di pojok kanan bawah
+                                        - Tiket: Buat tiket melalui halaman bantuan</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Contact Support -->
+                    <div class="contact-support">
+                        <div class="support-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h4>Tidak menemukan jawaban yang Anda cari?</h4>
+                        <p>Tim dukungan kami siap membantu Anda 24/7</p>
+                        <button class="support-btn">
+                            <i class="fas fa-envelope"></i> Hubungi Dukungan
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Footer akan dimuat via JavaScript -->
+            <footer id="footer">
+                <!-- Footer content di-load dari components/footer.html -->
+            </footer>
+        </main>
+        
+        <!-- Toggle Sidebar Button -->
+        <div class="toggle-sidebar" id="toggleSidebar">
+            <i class="fas fa-bars"></i>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

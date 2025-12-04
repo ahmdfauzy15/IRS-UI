@@ -1,0 +1,1321 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard IRS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --success-color: #27ae60;
+            --warning-color: #f39c12;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --text-color: #333;
+            --text-light: #7f8c8d;
+            --white: #ffffff;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            width: 260px;
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            position: fixed;
+            height: 100vh;
+            z-index: 100;
+            transform: translateX(0);
+            transition: var(--transition);
+            overflow-y: auto;
+        }
+
+        .sidebar-header {
+            padding: 25px 20px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            border-bottom: 4px solid var(--secondary-color);
+        }
+
+        .sidebar-header h1 {
+            font-size: 24px;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sidebar-header p {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        .sidebar-menu {
+            padding: 20px 0;
+        }
+
+        .menu-item {
+            padding: 15px 25px;
+            display: flex;
+            align-items: center;
+            color: var(--text-color);
+            text-decoration: none;
+            transition: var(--transition);
+            border-left: 4px solid transparent;
+            cursor: pointer;
+        }
+
+        .menu-item:hover {
+            background-color: rgba(52, 152, 219, 0.1);
+            border-left-color: var(--secondary-color);
+            color: var(--secondary-color);
+        }
+
+        .menu-item.active {
+            background-color: rgba(52, 152, 219, 0.1);
+            border-left-color: var(--secondary-color);
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+
+        .menu-item i {
+            width: 25px;
+            margin-right: 12px;
+            font-size: 18px;
+        }
+
+        .menu-subitems {
+            background-color: rgba(236, 240, 241, 0.5);
+            margin-left: 25px;
+            border-radius: 4px;
+            overflow: hidden;
+            max-height: 0;
+            transition: max-height 0.3s ease;
+        }
+
+        .menu-subitems.expanded {
+            max-height: 200px;
+        }
+
+        .menu-subitem {
+            padding: 12px 25px;
+            display: flex;
+            align-items: center;
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 14px;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .menu-subitem:hover {
+            color: var(--secondary-color);
+            background-color: rgba(52, 152, 219, 0.05);
+        }
+
+        .menu-subitem.active {
+            color: var(--secondary-color);
+            font-weight: 500;
+            background-color: rgba(52, 152, 219, 0.05);
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            flex: 1;
+            margin-left: 260px;
+            padding: 25px;
+            transition: var(--transition);
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .header h2 {
+            font-size: 28px;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header h2 i {
+            color: var(--secondary-color);
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .user-avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: var(--secondary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        /* Content Pages */
+        .content-page {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .content-page.active {
+            display: block;
+        }
+
+        /* Welcome Banner */
+        .welcome-banner {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+            animation: fadeInUp 0.8s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .welcome-banner::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 300px;
+            height: 300px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+
+        .welcome-banner h3 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .welcome-banner p {
+            font-size: 16px;
+            opacity: 0.9;
+            max-width: 600px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Cards Section */
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background-color: var(--white);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            animation: fadeIn 0.6s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .card-header h4 {
+            font-size: 18px;
+            color: var(--primary-color);
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+        }
+
+        .card-icon.apolo {
+            background-color: var(--secondary-color);
+        }
+
+        .card-icon.ereporting {
+            background-color: var(--success-color);
+        }
+
+        .card-icon.sipina {
+            background-color: var(--accent-color);
+        }
+
+        .card p {
+            color: var(--text-light);
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .card-btn {
+            display: inline-block;
+            background-color: transparent;
+            color: var(--secondary-color);
+            border: 1px solid var(--secondary-color);
+            padding: 8px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .card-btn:hover {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        /* Announcement Section */
+        .announcement-section {
+            background-color: var(--white);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+            animation: fadeIn 0.8s ease 0.2s both;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .section-title h3 {
+            color: var(--primary-color);
+            font-size: 22px;
+        }
+
+        .announcement-content {
+            padding: 15px;
+            background-color: rgba(236, 240, 241, 0.5);
+            border-radius: 8px;
+            text-align: center;
+            color: var(--text-light);
+        }
+
+        /* Table Section */
+        .table-section {
+            background-color: var(--white);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+            animation: fadeIn 0.8s ease;
+        }
+
+        .table-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .table-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .table-title h3 {
+            color: var(--primary-color);
+            font-size: 22px;
+        }
+
+        /* Filter Section */
+        .filter-section {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+            background-color: rgba(236, 240, 241, 0.5);
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            min-width: 180px;
+        }
+
+        .filter-group label {
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: var(--primary-color);
+            font-size: 14px;
+        }
+
+        .filter-select, .filter-input {
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            background-color: white;
+            color: var(--text-color);
+            font-size: 14px;
+            transition: var(--transition);
+        }
+
+        .filter-select:focus, .filter-input:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+        }
+
+        .filter-actions {
+            display: flex;
+            align-items: flex-end;
+            gap: 10px;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .filter-btn.primary {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        .filter-btn.primary:hover {
+            background-color: #2980b9;
+        }
+
+        .filter-btn.secondary {
+            background-color: transparent;
+            color: var(--text-light);
+            border: 1px solid #ddd;
+        }
+
+        .filter-btn.secondary:hover {
+            background-color: #f5f5f5;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+            border-radius: 8px;
+            border: 1px solid #eee;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        th {
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        tbody tr {
+            border-bottom: 1px solid #eee;
+            transition: var(--transition);
+        }
+
+        tbody tr:hover {
+            background-color: rgba(52, 152, 219, 0.05);
+        }
+
+        td {
+            padding: 15px;
+        }
+
+        .status {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            display: inline-block;
+        }
+
+        .status.selesai {
+            background-color: rgba(39, 174, 96, 0.1);
+            color: var(--success-color);
+        }
+
+        .status.proses {
+            background-color: rgba(52, 152, 219, 0.1);
+            color: var(--secondary-color);
+        }
+
+        .status.tunda {
+            background-color: rgba(231, 76, 60, 0.1);
+            color: var(--accent-color);
+        }
+
+        .status.review {
+            background-color: rgba(243, 156, 18, 0.1);
+            color: var(--warning-color);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .action-btn {
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            border: none;
+            transition: var(--transition);
+        }
+
+        .action-btn.view {
+            background-color: rgba(52, 152, 219, 0.1);
+            color: var(--secondary-color);
+        }
+
+        .action-btn.view:hover {
+            background-color: rgba(52, 152, 219, 0.2);
+        }
+
+        .action-btn.edit {
+            background-color: rgba(39, 174, 96, 0.1);
+            color: var(--success-color);
+        }
+
+        .action-btn.edit:hover {
+            background-color: rgba(39, 174, 96, 0.2);
+        }
+
+        .action-btn.delete {
+            background-color: rgba(231, 76, 60, 0.1);
+            color: var(--accent-color);
+        }
+
+        .action-btn.delete:hover {
+            background-color: rgba(231, 76, 60, 0.2);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            color: var(--text-light);
+            font-size: 14px;
+            border-top: 1px solid #eee;
+        }
+
+        /* Toggle Button */
+        .toggle-sidebar {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            width: 45px;
+            height: 45px;
+            background-color: var(--secondary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 101;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: var(--transition);
+            display: none;
+        }
+
+        /* No Data Message */
+        .no-data {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-light);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from { 
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(0); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+            
+            .sidebar.active {
+                transform: translateX(0);
+            }
+            
+            .main-content {
+                margin-left: 0;
+            }
+            
+            .toggle-sidebar {
+                display: flex;
+            }
+            
+            .cards-container {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+            
+            .table-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .filter-section {
+                flex-direction: column;
+            }
+            
+            .filter-group {
+                min-width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 20px 15px;
+            }
+            
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .user-info {
+                align-self: flex-end;
+            }
+            
+            .cards-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .welcome-banner h3 {
+                font-size: 24px;
+            }
+            
+            .card {
+                padding: 20px;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h1><i class="fas fa-chart-bar"></i> IRS APOLO</h1>
+                <p>Sistem Pelaporan Terpusat</p>
+            </div>
+            
+            <nav class="sidebar-menu">
+                <a href="#" class="menu-item active" data-page="home">
+                    <i class="fas fa-home"></i> Home
+                </a>
+                
+                <div class="menu-item" id="laporan-menu">
+                    <i class="fas fa-file-alt"></i> Laporan
+                </div>
+                <div class="menu-subitems" id="laporan-submenu">
+                    <a href="#" class="menu-subitem" data-page="apolo">Lapran APOLO</a>
+                    <a href="#" class="menu-subitem" data-page="estatement">Laporan e-statement</a>
+                    <a href="#" class="menu-subitem" data-page="sipina">Laporan SIPINA</a>
+                </div>
+                
+                <a href="#" class="menu-item" data-page="administrasi">
+                    <i class="fas fa-cogs"></i> Administrasi
+                </a>
+                
+                <a href="#" class="menu-item" data-page="audit">
+                    <i class="fas fa-history"></i> Audit Log
+                </a>
+                
+                <a href="#" class="menu-item" data-page="download">
+                    <i class="fas fa-download"></i> Download
+                </a>
+            </nav>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="main-content" id="mainContent">
+            <!-- Header -->
+            <header class="header">
+                <h2><i class="fas fa-tachometer-alt"></i> Dashboard IRS</h2>
+                <div class="user-info">
+                    <div class="user-avatar">AD</div>
+                    <div>
+                        <p style="font-weight: 500;">Administrator</p>
+                        <p style="font-size: 12px; color: var(--text-light);">Online</p>
+                    </div>
+                </div>
+            </header>
+            
+            <!-- Home Page Content -->
+            <div id="home-page" class="content-page active">
+                <!-- Welcome Banner -->
+                <section class="welcome-banner">
+                    <h3>Selamat datang di dashboard APOLO</h3>
+                    <p>Sistem pelaporan daring terpusat yang membantu Anda memantau dan mengelola laporan dengan efisien</p>
+                </section>
+                
+                <!-- Cards Section -->
+                <div class="cards-container">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>APOLO</h4>
+                            <div class="card-icon apolo">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                        </div>
+                        <p>Sistem pelaporan daring terpusat yang memudahkan pengelolaan data dan laporan secara real-time.</p>
+                        <button class="card-btn" data-page="apolo">Read More</button>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>E-Reporting</h4>
+                            <div class="card-icon ereporting">
+                                <i class="fas fa-file-signature"></i>
+                            </div>
+                        </div>
+                        <p>Penyampaian laporan perusahaan publik secara elektronik untuk meningkatkan transparansi dan akuntabilitas.</p>
+                        <button class="card-btn" data-page="estatement">Read More</button>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>SIPINA</h4>
+                            <div class="card-icon sipina">
+                                <i class="fas fa-gavel"></i>
+                            </div>
+                        </div>
+                        <p>Pelaporan Sanksi Administrator DJK yang terintegrasi dengan sistem pengawasan keuangan.</p>
+                        <button class="card-btn" data-page="sipina">Read More</button>
+                    </div>
+                </div>
+                
+                <!-- Announcement Section -->
+                <section class="announcement-section">
+                    <div class="section-title">
+                        <i class="fas fa-bullhorn"></i>
+                        <h3>Pengumuman</h3>
+                    </div>
+                    <div class="announcement-content">
+                        <p><i class="fas fa-info-circle"></i> Tidak ada pengumuman terbaru</p>
+                    </div>
+                </section>
+                
+                <!-- Table Section -->
+                <section class="table-section">
+                    <div class="section-title">
+                        <i class="fas fa-table"></i>
+                        <h3>Laporan Terbaru</h3>
+                    </div>
+                    
+                    <div class="table-responsive">
+                        <table id="home-table">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Jenis Laporan</th>
+                                    <th>Periode</th>
+                                    <th>Tanggal Submit</th>
+                                    <th>Status</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="home-table-body">
+                                <!-- Data akan diisi oleh JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+            
+            <!-- APOLO Reports Page -->
+            <div id="apolo-page" class="content-page">
+                <div class="table-section">
+                    <div class="table-header">
+                        <div class="table-title">
+                            <i class="fas fa-chart-line"></i>
+                            <h3>Laporan APOLO</h3>
+                        </div>
+                        <div class="action-buttons">
+                            <button class="filter-btn primary" id="export-apolo">
+                                <i class="fas fa-download"></i> Export Data
+                            </button>
+                            <button class="filter-btn primary" id="add-report">
+                                <i class="fas fa-plus"></i> Tambah Laporan
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Filter Section -->
+                    <div class="filter-section">
+                        <div class="filter-group">
+                            <label for="filter-jenis">Jenis Laporan</label>
+                            <select id="filter-jenis" class="filter-select">
+                                <option value="all">Semua Jenis</option>
+                                <option value="keuangan">Laporan Keuangan</option>
+                                <option value="kinerja">Laporan Kinerja</option>
+                                <option value="audit">Laporan Audit</option>
+                                <option value="kepatuhan">Laporan Kepatuhan</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label for="filter-status">Status</label>
+                            <select id="filter-status" class="filter-select">
+                                <option value="all">Semua Status</option>
+                                <option value="selesai">Selesai</option>
+                                <option value="proses">Dalam Proses</option>
+                                <option value="tunda">Ditunda</option>
+                                <option value="review">Dalam Review</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label for="filter-periode">Periode</label>
+                            <select id="filter-periode" class="filter-select">
+                                <option value="all">Semua Periode</option>
+                                <option value="q1">Q1 2023</option>
+                                <option value="q2">Q2 2023</option>
+                                <option value="q3">Q3 2023</option>
+                                <option value="q4">Q4 2023</option>
+                                <option value="2022">Tahun 2022</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label for="filter-tanggal">Tanggal Submit</label>
+                            <input type="date" id="filter-tanggal" class="filter-input">
+                        </div>
+                        
+                        <div class="filter-actions">
+                            <button class="filter-btn primary" id="apply-filter">
+                                <i class="fas fa-filter"></i> Terapkan Filter
+                            </button>
+                            <button class="filter-btn secondary" id="reset-filter">
+                                <i class="fas fa-redo"></i> Reset
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Table -->
+                    <div class="table-responsive">
+                        <table id="apolo-table">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Jenis Laporan</th>
+                                    <th>Periode</th>
+                                    <th>Tanggal Submit</th>
+                                    <th>Deadline</th>
+                                    <th>Status</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="apolo-table-body">
+                                <!-- Data akan diisi oleh JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div id="no-data-apolo" class="no-data" style="display: none;">
+                        <i class="fas fa-clipboard-list fa-3x" style="margin-bottom: 15px; color: #ddd;"></i>
+                        <p>Tidak ada data laporan yang sesuai dengan filter</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Other Pages (Placeholder) -->
+            <div id="estatement-page" class="content-page">
+                <div class="table-section">
+                    <div class="section-title">
+                        <i class="fas fa-file-signature"></i>
+                        <h3>Laporan e-Statement</h3>
+                    </div>
+                    <div class="announcement-content">
+                        <p><i class="fas fa-info-circle"></i> Halaman ini sedang dalam pengembangan</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="sipina-page" class="content-page">
+                <div class="table-section">
+                    <div class="section-title">
+                        <i class="fas fa-gavel"></i>
+                        <h3>Laporan SIPINA</h3>
+                    </div>
+                    <div class="announcement-content">
+                        <p><i class="fas fa-info-circle"></i> Halaman ini sedang dalam pengembangan</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="administrasi-page" class="content-page">
+                <div class="table-section">
+                    <div class="section-title">
+                        <i class="fas fa-cogs"></i>
+                        <h3>Administrasi</h3>
+                    </div>
+                    <div class="announcement-content">
+                        <p><i class="fas fa-info-circle"></i> Halaman ini sedang dalam pengembangan</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="audit-page" class="content-page">
+                <div class="table-section">
+                    <div class="section-title">
+                        <i class="fas fa-history"></i>
+                        <h3>Audit Log</h3>
+                    </div>
+                    <div class="announcement-content">
+                        <p><i class="fas fa-info-circle"></i> Halaman ini sedang dalam pengembangan</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="download-page" class="content-page">
+                <div class="table-section">
+                    <div class="section-title">
+                        <i class="fas fa-download"></i>
+                        <h3>Download</h3>
+                    </div>
+                    <div class="announcement-content">
+                        <p><i class="fas fa-info-circle"></i> Halaman ini sedang dalam pengembangan</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Footer -->
+            <footer class="footer">
+                <p>&copy; 2023 APOLO - Sistem Pelaporan Terpusat. Semua hak dilindungi.</p>
+            </footer>
+        </main>
+        
+        <!-- Toggle Sidebar Button -->
+        <div class="toggle-sidebar" id="toggleSidebar">
+            <i class="fas fa-bars"></i>
+        </div>
+    </div>
+
+    <script>
+        // Data contoh untuk laporan APOLO
+        const apoloReportsData = [
+            { id: 1, jenis: "Laporan Keuangan Q1", jenisValue: "keuangan", periode: "Januari - Maret 2023", periodeValue: "q1", tanggal: "15 April 2023", deadline: "30 April 2023", status: "selesai" },
+            { id: 2, jenis: "Laporan Kinerja Tahunan", jenisValue: "kinerja", periode: "2022", periodeValue: "2022", tanggal: "5 Maret 2023", deadline: "31 Maret 2023", status: "proses" },
+            { id: 3, jenis: "Laporan Audit Internal", jenisValue: "audit", periode: "Semester II 2022", periodeValue: "q3", tanggal: "20 Februari 2023", deadline: "15 Maret 2023", status: "tunda" },
+            { id: 4, jenis: "Laporan Keuangan Q4", jenisValue: "keuangan", periode: "Oktober - Desember 2022", periodeValue: "q4", tanggal: "10 Januari 2023", deadline: "31 Januari 2023", status: "selesai" },
+            { id: 5, jenis: "Laporan Kepatuhan Regulasi", jenisValue: "kepatuhan", periode: "2022", periodeValue: "2022", tanggal: "28 Desember 2022", deadline: "15 Januari 2023", status: "selesai" },
+            { id: 6, jenis: "Laporan Keuangan Q2", jenisValue: "keuangan", periode: "April - Juni 2023", periodeValue: "q2", tanggal: "15 Juli 2023", deadline: "31 Juli 2023", status: "review" },
+            { id: 7, jenis: "Laporan Operasional Bulanan", jenisValue: "kinerja", periode: "Juni 2023", periodeValue: "q2", tanggal: "5 Juli 2023", deadline: "10 Juli 2023", status: "proses" },
+            { id: 8, jenis: "Laporan Audit Eksternal", jenisValue: "audit", periode: "2022", periodeValue: "2022", tanggal: "15 Februari 2023", deadline: "28 Februari 2023", status: "selesai" }
+        ];
+
+        // Data contoh untuk home page
+        const homeReportsData = apoloReportsData.slice(0, 5);
+
+        // DOM Elements
+        const toggleSidebar = document.getElementById('toggleSidebar');
+        const sidebar = document.getElementById('sidebar');
+        const laporanMenu = document.getElementById('laporan-menu');
+        const laporanSubmenu = document.getElementById('laporan-submenu');
+        const menuItems = document.querySelectorAll('.menu-item');
+        const menuSubitems = document.querySelectorAll('.menu-subitem');
+        const contentPages = document.querySelectorAll('.content-page');
+        const cardBtns = document.querySelectorAll('.card-btn');
+        
+        // Filter Elements
+        const filterJenis = document.getElementById('filter-jenis');
+        const filterStatus = document.getElementById('filter-status');
+        const filterPeriode = document.getElementById('filter-periode');
+        const filterTanggal = document.getElementById('filter-tanggal');
+        const applyFilterBtn = document.getElementById('apply-filter');
+        const resetFilterBtn = document.getElementById('reset-filter');
+        
+        // Table Bodies
+        const apoloTableBody = document.getElementById('apolo-table-body');
+        const homeTableBody = document.getElementById('home-table-body');
+        const noDataApolo = document.getElementById('no-data-apolo');
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Render home page table
+            renderHomeTable();
+            
+            // Render APOLO table with all data
+            renderApoloTable(apoloReportsData);
+            
+            // Set today's date as default for date filter
+            const today = new Date().toISOString().split('T')[0];
+            filterTanggal.value = today;
+            
+            // Expand Laporan menu by default
+            laporanSubmenu.classList.add('expanded');
+        });
+
+        // Toggle Sidebar
+        toggleSidebar.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+            toggleSidebar.innerHTML = sidebar.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+
+        // Toggle Laporan Submenu
+        laporanMenu.addEventListener('click', function(e) {
+            e.preventDefault();
+            laporanSubmenu.classList.toggle('expanded');
+        });
+
+        // Navigation between pages
+        function navigateToPage(pageId) {
+            // Hide all pages
+            contentPages.forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show selected page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Update active menu items
+            updateActiveMenu(pageId);
+            
+            // Update page title
+            const pageTitle = document.querySelector('.header h2');
+            if (pageId === 'home-page') {
+                pageTitle.innerHTML = '<i class="fas fa-tachometer-alt"></i> Dashboard IRS';
+            } else if (pageId === 'apolo-page') {
+                pageTitle.innerHTML = '<i class="fas fa-chart-line"></i> Laporan APOLO';
+            } else if (pageId === 'estatement-page') {
+                pageTitle.innerHTML = '<i class="fas fa-file-signature"></i> Laporan e-Statement';
+            } else if (pageId === 'sipina-page') {
+                pageTitle.innerHTML = '<i class="fas fa-gavel"></i> Laporan SIPINA';
+            } else if (pageId === 'administrasi-page') {
+                pageTitle.innerHTML = '<i class="fas fa-cogs"></i> Administrasi';
+            } else if (pageId === 'audit-page') {
+                pageTitle.innerHTML = '<i class="fas fa-history"></i> Audit Log';
+            } else if (pageId === 'download-page') {
+                pageTitle.innerHTML = '<i class="fas fa-download"></i> Download';
+            }
+        }
+
+        // Update active menu items
+        function updateActiveMenu(pageId) {
+            // Remove active class from all menu items
+            menuItems.forEach(item => item.classList.remove('active'));
+            menuSubitems.forEach(item => item.classList.remove('active'));
+            
+            // Add active class to appropriate menu item
+            if (pageId === 'home-page') {
+                document.querySelector('.menu-item[data-page="home"]').classList.add('active');
+            } else if (pageId === 'apolo-page') {
+                document.querySelector('.menu-subitem[data-page="apolo"]').classList.add('active');
+                laporanSubmenu.classList.add('expanded');
+            } else if (pageId === 'estatement-page') {
+                document.querySelector('.menu-subitem[data-page="estatement"]').classList.add('active');
+                laporanSubmenu.classList.add('expanded');
+            } else if (pageId === 'sipina-page') {
+                document.querySelector('.menu-subitem[data-page="sipina"]').classList.add('active');
+                laporanSubmenu.classList.add('expanded');
+            } else {
+                const menuItem = document.querySelector(`.menu-item[data-page="${pageId.replace('-page', '')}"]`);
+                if (menuItem) menuItem.classList.add('active');
+            }
+        }
+
+        // Menu item click handlers
+        menuItems.forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                const page = this.getAttribute('data-page');
+                if (page) {
+                    navigateToPage(`${page}-page`);
+                }
+            });
+        });
+
+        // Submenu item click handlers
+        menuSubitems.forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                const page = this.getAttribute('data-page');
+                if (page) {
+                    navigateToPage(`${page}-page`);
+                }
+            });
+        });
+
+        // Card button click handlers
+        cardBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const page = this.getAttribute('data-page');
+                if (page) {
+                    navigateToPage(`${page}-page`);
+                }
+            });
+        });
+
+        // Render home table
+        function renderHomeTable() {
+            homeTableBody.innerHTML = '';
+            
+            homeReportsData.forEach(report => {
+                const row = document.createElement('tr');
+                
+                // Status badge
+                let statusBadge = '';
+                if (report.status === 'selesai') {
+                    statusBadge = '<span class="status selesai">Selesai</span>';
+                } else if (report.status === 'proses') {
+                    statusBadge = '<span class="status proses">Dalam Proses</span>';
+                } else if (report.status === 'tunda') {
+                    statusBadge = '<span class="status tunda">Ditunda</span>';
+                } else if (report.status === 'review') {
+                    statusBadge = '<span class="status review">Dalam Review</span>';
+                }
+                
+                row.innerHTML = `
+                    <td>${report.id}</td>
+                    <td>${report.jenis}</td>
+                    <td>${report.periode}</td>
+                    <td>${report.tanggal}</td>
+                    <td>${statusBadge}</td>
+                    <td><a href="#" style="color: var(--secondary-color);">Lihat Detail</a></td>
+                `;
+                
+                homeTableBody.appendChild(row);
+            });
+        }
+
+        // Render APOLO table
+        function renderApoloTable(data) {
+            apoloTableBody.innerHTML = '';
+            
+            if (data.length === 0) {
+                noDataApolo.style.display = 'block';
+                return;
+            }
+            
+            noDataApolo.style.display = 'none';
+            
+            data.forEach(report => {
+                const row = document.createElement('tr');
+                
+                // Status badge
+                let statusBadge = '';
+                if (report.status === 'selesai') {
+                    statusBadge = '<span class="status selesai">Selesai</span>';
+                } else if (report.status === 'proses') {
+                    statusBadge = '<span class="status proses">Dalam Proses</span>';
+                } else if (report.status === 'tunda') {
+                    statusBadge = '<span class="status tunda">Ditunda</span>';
+                } else if (report.status === 'review') {
+                    statusBadge = '<span class="status review">Dalam Review</span>';
+                }
+                
+                row.innerHTML = `
+                    <td>${report.id}</td>
+                    <td>${report.jenis}</td>
+                    <td>${report.periode}</td>
+                    <td>${report.tanggal}</td>
+                    <td>${report.deadline}</td>
+                    <td>${statusBadge}</td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="action-btn view"><i class="fas fa-eye"></i> Lihat</button>
+                            <button class="action-btn edit"><i class="fas fa-edit"></i> Edit</button>
+                            <button class="action-btn delete"><i class="fas fa-trash"></i> Hapus</button>
+                        </div>
+                    </td>
+                `;
+                
+                apoloTableBody.appendChild(row);
+            });
+            
+            // Add event listeners to action buttons
+            document.querySelectorAll('.action-btn.view').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    alert('Fitur "Lihat Detail" akan menampilkan detail laporan');
+                });
+            });
+            
+            document.querySelectorAll('.action-btn.edit').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    alert('Fitur "Edit" akan membuka form edit laporan');
+                });
+            });
+            
+            document.querySelectorAll('.action-btn.delete').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    if (confirm('Apakah Anda yakin ingin menghapus laporan ini?')) {
+                        alert('Laporan berhasil dihapus (simulasi)');
+                    }
+                });
+            });
+        }
+
+        // Apply filter
+        applyFilterBtn.addEventListener('click', function() {
+            const jenis = filterJenis.value;
+            const status = filterStatus.value;
+            const periode = filterPeriode.value;
+            const tanggal = filterTanggal.value;
+            
+            let filteredData = apoloReportsData;
+            
+            // Filter by jenis
+            if (jenis !== 'all') {
+                filteredData = filteredData.filter(report => report.jenisValue === jenis);
+            }
+            
+            // Filter by status
+            if (status !== 'all') {
+                filteredData = filteredData.filter(report => report.status === status);
+            }
+            
+            // Filter by periode
+            if (periode !== 'all') {
+                filteredData = filteredData.filter(report => report.periodeValue === periode);
+            }
+            
+            // Filter by tanggal (simplified - in real app would compare dates)
+            if (tanggal) {
+                // This is a simplified filter for demo purposes
+                filteredData = filteredData.filter(report => {
+                    // Simple check: if tanggal filter contains "2023", show only 2023 reports
+                    if (tanggal.includes('2023')) {
+                        return report.tanggal.includes('2023');
+                    }
+                    return true;
+                });
+            }
+            
+            renderApoloTable(filteredData);
+        });
+
+        // Reset filter
+        resetFilterBtn.addEventListener('click', function() {
+            filterJenis.value = 'all';
+            filterStatus.value = 'all';
+            filterPeriode.value = 'all';
+            filterTanggal.value = new Date().toISOString().split('T')[0];
+            
+            renderApoloTable(apoloReportsData);
+        });
+
+        // Export data button
+        document.getElementById('export-apolo').addEventListener('click', function() {
+            alert('Data laporan APOLO berhasil diexport (simulasi)');
+        });
+
+        // Add report button
+        document.getElementById('add-report').addEventListener('click', function() {
+            alert('Fitur "Tambah Laporan" akan membuka form tambah laporan baru');
+        });
+
+        // Simulate loading animation
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease';
+            
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+    </script>
+</body>
+</html>
