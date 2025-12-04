@@ -55,7 +55,7 @@ const searchResultCount = document.getElementById('search-result-count');
 const titles = {
     'home-page': { title: 'Dashboard IRS', breadcrumb: 'Dashboard' },
     'apolo-page': { title: 'Laporan APOLO', breadcrumb: 'Laporan / APOLO' },
-    'estatement-page': { title: 'Laporan e-Statement', breadcrumb: 'Laporan / e-Statement' },
+    'estatement-page': { title: 'Laporan e-reporting', breadcrumb: 'Laporan / e-Statement' },
     'sipina-page': { title: 'Laporan SIPINA', breadcrumb: 'Laporan / SIPINA' },
     'administrasi-page': { title: 'Administrasi', breadcrumb: 'Administrasi' },
     'audit-page': { title: 'Audit Log', breadcrumb: 'Audit Log' },
@@ -121,7 +121,7 @@ function loadSidebar() {
                     <i class="fas fa-chart-line"></i> Laporan APOLO
                 </a>
                 <a href="#" class="menu-subitem" data-page="estatement">
-                    <i class="fas fa-file-signature"></i> Laporan e-Statement
+                    <i class="fas fa-file-signature"></i> Laporan e-reporting
                 </a>
                 <a href="#" class="menu-subitem" data-page="sipina">
                     <i class="fas fa-gavel"></i> Laporan SIPINA
