@@ -1,26 +1,70 @@
-// Data contoh untuk laporan APOLO dengan status terbatas
 const apoloReportsData = [
-    { id: 1, jenis: "Laporan Keuangan Q1", jenisValue: "keuangan", periode: "Januari - Maret 2023", periodeValue: "q1", tanggal: "15 April 2023", deadline: "30 April 2023", status: "berhasil", sistem: "APOLO" },
-    { id: 2, jenis: "Laporan Kinerja Tahunan", jenisValue: "kinerja", periode: "2022", periodeValue: "2022", tanggal: "5 Maret 2023", deadline: "31 Maret 2023", status: "terlambat", sistem: "APOLO" },
-    { id: 3, jenis: "Laporan Audit Internal", jenisValue: "audit", periode: "Semester II 2022", periodeValue: "q3", tanggal: "20 Februari 2023", deadline: "15 Maret 2023", status: "tidak-berhasil", sistem: "APOLO" },
-    { id: 4, jenis: "Laporan Keuangan Q4", jenisValue: "keuangan", periode: "Oktober - Desember 2022", periodeValue: "q4", tanggal: "10 Januari 2023", deadline: "31 Januari 2023", status: "berhasil", sistem: "APOLO" },
-    { id: 5, jenis: "Laporan Kepatuhan Regulasi", jenisValue: "kepatuhan", periode: "2022", periodeValue: "2022", tanggal: "28 Desember 2022", deadline: "15 Januari 2023", status: "berhasil", sistem: "APOLO" },
-    { id: 6, jenis: "Laporan Keuangan Q2", jenisValue: "keuangan", periode: "April - Juni 2023", periodeValue: "q2", tanggal: "15 Juli 2023", deadline: "31 Juli 2023", status: "terlambat", sistem: "APOLO" },
-    { id: 7, jenis: "Laporan Operasional Bulanan", jenisValue: "kinerja", periode: "Juni 2023", periodeValue: "q2", tanggal: "5 Juli 2023", deadline: "10 Juli 2023", status: "berhasil", sistem: "APOLO" },
-    { id: 8, jenis: "Laporan Audit Eksternal", jenisValue: "audit", periode: "2022", periodeValue: "2022", tanggal: "15 Februari 2023", deadline: "28 Februari 2023", status: "tidak-berhasil", sistem: "APOLO" },
-    { id: 9, jenis: "Laporan Likuiditas Triwulan", jenisValue: "keuangan", periode: "Januari - Maret 2023", periodeValue: "q1", tanggal: "10 April 2023", deadline: "20 April 2023", status: "berhasil", sistem: "APOLO" },
-    { id: 10, jenis: "Laporan Manajemen Risiko", jenisValue: "kepatuhan", periode: "2022", periodeValue: "2022", tanggal: "30 Januari 2023", deadline: "15 Februari 2023", status: "berhasil", sistem: "APOLO" },
-    { id: 11, jenis: "Laporan GCG", jenisValue: "kepatuhan", periode: "2022", periodeValue: "2022", tanggal: "25 Februari 2023", deadline: "10 Maret 2023", status: "terlambat", sistem: "APOLO" },
-    { id: 12, jenis: "Laporan Keberlanjutan", jenisValue: "kinerja", periode: "2022", periodeValue: "2022", tanggal: "15 Maret 2023", deadline: "30 Maret 2023", status: "berhasil", sistem: "APOLO" }
+ 
+  { id: 1, jenis: "Laporan Keuangan Q1", jenisValue: "keuangan", periode: "Januari - Maret 2023", periodeValue: "q1", tanggal: "15 April 2023", deadline: "30 April 2023", status: "berhasil", sistem: "APOLO" },
+  { id: 2, jenis: "Laporan Kinerja Tahunan", jenisValue: "kinerja", periode: "2022", periodeValue: "2022", tanggal: "5 Maret 2023", deadline: "31 Maret 2023", status: "terlambat", sistem: "APOLO" },
+  { id: 3, jenis: "Laporan Audit Internal", jenisValue: "audit", periode: "Semester II 2022", periodeValue: "q3", tanggal: "20 Februari 2023", deadline: "15 Maret 2023", status: "tidak-berhasil", sistem: "APOLO" },
+  { id: 4, jenis: "Laporan Keuangan Q4", jenisValue: "keuangan", periode: "Oktober - Desember 2022", periodeValue: "q4", tanggal: "10 Januari 2023", deadline: "31 Januari 2023", status: "berhasil", sistem: "APOLO" },
+  { id: 5, jenis: "Laporan Kepatuhan Regulasi", jenisValue: "kepatuhan", periode: "2022", periodeValue: "2022", tanggal: "28 Desember 2022", deadline: "15 Januari 2023", status: "berhasil", sistem: "APOLO" },
+  { id: 6, jenis: "Laporan Keuangan Q2", jenisValue: "keuangan", periode: "April - Juni 2023", periodeValue: "q2", tanggal: "15 Juli 2023", deadline: "31 Juli 2023", status: "terlambat", sistem: "APOLO" },
+  { id: 7, jenis: "Laporan Operasional Bulanan", jenisValue: "kinerja", periode: "Juni 2023", periodeValue: "q2", tanggal: "5 Juli 2023", deadline: "10 Juli 2023", status: "berhasil", sistem: "APOLO" },
+  { id: 8, jenis: "Laporan Audit Eksternal", jenisValue: "audit", periode: "2022", periodeValue: "2022", tanggal: "15 Februari 2023", deadline: "28 Februari 2023", status: "tidak-berhasil", sistem: "APOLO" },
+  { id: 9, jenis: "Laporan Likuiditas Triwulan", jenisValue: "keuangan", periode: "Januari - Maret 2023", periodeValue: "q1", tanggal: "10 April 2023", deadline: "20 April 2023", status: "berhasil", sistem: "APOLO" },
+  { id: 10, jenis: "Laporan Manajemen Risiko", jenisValue: "kepatuhan", periode: "2022", periodeValue: "2022", tanggal: "30 Januari 2023", deadline: "15 Februari 2023", status: "berhasil", sistem: "APOLO" },
+  { id: 11, jenis: "Laporan GCG", jenisValue: "kepatuhan", periode: "2022", periodeValue: "2022", tanggal: "25 Februari 2023", deadline: "10 Maret 2023", status: "terlambat", sistem: "APOLO" },
+  { id: 12, jenis: "Laporan Keberlanjutan", jenisValue: "kinerja", periode: "2022", periodeValue: "2022", tanggal: "15 Maret 2023", deadline: "30 Maret 2023", status: "berhasil", sistem: "APOLO" },
+  { id: 13, jenis: "Laporan Keuangan Q3", jenisValue: "keuangan", periode: "Juli - September 2023", periodeValue: "q3", tanggal: "12 Oktober 2023", deadline: "31 Oktober 2023", status: "berhasil", sistem: "APOLO" },
+  { id: 14, jenis: "Laporan Operasional Bulanan", jenisValue: "kinerja", periode: "Juli 2023", periodeValue: "q3", tanggal: "8 Agustus 2023", deadline: "15 Agustus 2023", status: "terlambat", sistem: "APOLO" },
+  { id: 15, jenis: "Laporan Audit Internal", jenisValue: "audit", periode: "Q1 2023", periodeValue: "q1", tanggal: "18 Mei 2023", deadline: "31 Mei 2023", status: "berhasil", sistem: "APOLO" },
+  { id: 16, jenis: "Laporan Kepatuhan Regulasi", jenisValue: "kepatuhan", periode: "Semester I 2023", periodeValue: "q2", tanggal: "14 Juli 2023", deadline: "30 Juli 2023", status: "tidak-berhasil", sistem: "APOLO" },
+  { id: 17, jenis: "Laporan Kinerja Triwulan", jenisValue: "kinerja", periode: "Q2 2023", periodeValue: "q2", tanggal: "10 Juli 2023", deadline: "20 Juli 2023", status: "berhasil", sistem: "APOLO" },
+  { id: 18, jenis: "Laporan Keuangan Q1", jenisValue: "keuangan", periode: "Januari - Maret 2022", periodeValue: "q1", tanggal: "12 April 2022", deadline: "30 April 2022", status: "terlambat", sistem: "APOLO" },
+  { id: 19, jenis: "Laporan Audit Eksternal", jenisValue: "audit", periode: "2021", periodeValue: "2021", tanggal: "22 Februari 2022", deadline: "15 Maret 2022", status: "berhasil", sistem: "APOLO" },
+  { id: 20, jenis: "Laporan Manajemen Risiko", jenisValue: "kepatuhan", periode: "2021", periodeValue: "2021", tanggal: "5 Januari 2022", deadline: "25 Januari 2022", status: "berhasil", sistem: "APOLO" },
+  { id: 21, jenis: "Laporan Keuangan Q4", jenisValue: "keuangan", periode: "Oktober - Desember 2023", periodeValue: "q4", tanggal: "10 Januari 2024", deadline: "31 Januari 2024", status: "berhasil", sistem: "APOLO" },
+  { id: 22, jenis: "Laporan Kinerja Tahunan", jenisValue: "kinerja", periode: "2023", periodeValue: "2023", tanggal: "12 Februari 2024", deadline: "28 Februari 2024", status: "terlambat", sistem: "APOLO" },
+  { id: 23, jenis: "Laporan Audit Internal", jenisValue: "audit", periode: "Semester I 2023", periodeValue: "q2", tanggal: "20 Agustus 2023", deadline: "10 September 2023", status: "berhasil", sistem: "APOLO" },
+  { id: 24, jenis: "Laporan Keuangan Q2", jenisValue: "keuangan", periode: "April - Juni 2024", periodeValue: "q2", tanggal: "15 Juli 2024", deadline: "31 Juli 2024", status: "tidak-berhasil", sistem: "APOLO" },
+  { id: 25, jenis: "Laporan Operasional Bulanan", jenisValue: "kinerja", periode: "Februari 2024", periodeValue: "q1", tanggal: "5 Maret 2024", deadline: "10 Maret 2024", status: "berhasil", sistem: "APOLO" },
+  { id: 26, jenis: "Laporan Keuangan Q1", jenisValue: "keuangan", periode: "Januari - Maret 2024", periodeValue: "q1", tanggal: "14 April 2024", deadline: "30 April 2024", status: "berhasil", sistem: "APOLO" },
+  { id: 27, jenis: "Laporan Audit Eksternal", jenisValue: "audit", periode: "2023", periodeValue: "2023", tanggal: "22 Maret 2024", deadline: "10 April 2024", status: "terlambat", sistem: "APOLO" },
+  { id: 28, jenis: "Laporan Keberlanjutan", jenisValue: "kinerja", periode: "2023", periodeValue: "2023", tanggal: "18 April 2024", deadline: "30 April 2024", status: "berhasil", sistem: "APOLO" },
+  { id: 29, jenis: "Laporan Kepatuhan Regulasi", jenisValue: "kepatuhan", periode: "2023", periodeValue: "2023", tanggal: "30 Januari 2024", deadline: "15 Februari 2024", status: "terlambat", sistem: "APOLO" },
+  { id: 30, jenis: "Laporan GCG", jenisValue: "kepatuhan", periode: "2023", periodeValue: "2023", tanggal: "25 Februari 2024", deadline: "10 Maret 2024", status: "berhasil", sistem: "APOLO" },
+
+  { id: 31, jenis: "Laporan Keuangan Q3", jenisValue: "keuangan", periode: "Juli - September 2022", periodeValue: "q3", tanggal: "12 Oktober 2022", deadline: "31 Oktober 2022", status: "berhasil", sistem: "APOLO" },
+  { id: 32, jenis: "Laporan Operasional Bulanan", jenisValue: "kinerja", periode: "November 2022", periodeValue: "q4", tanggal: "5 Desember 2022", deadline: "12 Desember 2022", status: "terlambat", sistem: "APOLO" },
+  { id: 33, jenis: "Laporan Keuangan Q4", jenisValue: "keuangan", periode: "Oktober - Desember 2021", periodeValue: "q4", tanggal: "15 Januari 2022", deadline: "31 Januari 2022", status: "berhasil", sistem: "APOLO" },
+  { id: 34, jenis: "Laporan Audit Internal", jenisValue: "audit", periode: "Semester II 2021", periodeValue: "q4", tanggal: "20 Januari 2022", deadline: "10 Februari 2022", status: "tidak-berhasil", sistem: "APOLO" },
+  { id: 35, jenis: "Laporan Kinerja Triwulan", jenisValue: "kinerja", periode: "Q3 2022", periodeValue: "q3", tanggal: "12 Oktober 2022", deadline: "20 Oktober 2022", status: "berhasil", sistem: "APOLO" },
+
+  { id: 36, jenis: "Laporan Keuangan Q2", jenisValue: "keuangan", periode: "April - Juni 2021", periodeValue: "q2", tanggal: "10 Juli 2021", deadline: "25 Juli 2021", status: "berhasil", sistem: "APOLO" },
+  { id: 37, jenis: "Laporan Likuiditas Triwulan", jenisValue: "keuangan", periode: "Januari - Maret 2021", periodeValue: "q1", tanggal: "12 April 2021", deadline: "20 April 2021", status: "terlambat", sistem: "APOLO" },
+  { id: 38, jenis: "Laporan Audit Eksternal", jenisValue: "audit", periode: "2020", periodeValue: "2020", tanggal: "22 Februari 2021", deadline: "15 Maret 2021", status: "berhasil", sistem: "APOLO" },
+  { id: 39, jenis: "Laporan Kepatuhan Regulasi", jenisValue: "kepatuhan", periode: "2021", periodeValue: "2021", tanggal: "15 Januari 2022", deadline: "30 Januari 2022", status: "tidak-berhasil", sistem: "APOLO" },
+  { id: 40, jenis: "Laporan GCG", jenisValue: "kepatuhan", periode: "2021", periodeValue: "2021", tanggal: "20 Februari 2022", deadline: "10 Maret 2022", status: "berhasil", sistem: "APOLO" },
+
+  { id: 41, jenis: "Laporan Keberlanjutan", jenisValue: "kinerja", periode: "2020", periodeValue: "2020", tanggal: "10 Maret 2021", deadline: "25 Maret 2021", status: "berhasil", sistem: "APOLO" },
+  { id: 42, jenis: "Laporan Operasional Bulanan", jenisValue: "kinerja", periode: "Mei 2021", periodeValue: "q2", tanggal: "7 Juni 2021", deadline: "12 Juni 2021", status: "terlambat", sistem: "APOLO" },
+  { id: 43, jenis: "Laporan Keuangan Q1", jenisValue: "keuangan", periode: "Januari - Maret 2020", periodeValue: "q1", tanggal: "12 April 2020", deadline: "30 April 2020", status: "berhasil", sistem: "APOLO" },
+  { id: 44, jenis: "Laporan Kinerja Triwulan", jenisValue: "kinerja", periode: "Q4 2020", periodeValue: "q4", tanggal: "10 Januari 2021", deadline: "25 Januari 2021", status: "berhasil", sistem: "APOLO" },
+  { id: 45, jenis: "Laporan Audit Internal", jenisValue: "audit", periode: "Semester I 2020", periodeValue: "q2", tanggal: "10 Juli 2020", deadline: "30 Juli 2020", status: "tidak-berhasil", sistem: "APOLO" },
+
+  { id: 46, jenis: "Laporan Audit Eksternal", jenisValue: "audit", periode: "2019", periodeValue: "2019", tanggal: "18 Februari 2020", deadline: "10 Maret 2020", status: "berhasil", sistem: "APOLO" },
+  { id: 47, jenis: "Laporan Kepatuhan Regulasi", jenisValue: "kepatuhan", periode: "2020", periodeValue: "2020", tanggal: "25 Januari 2021", deadline: "10 Februari 2021", status: "berhasil", sistem: "APOLO" },
+  { id: 48, jenis: "Laporan GCG", jenisValue: "kepatuhan", periode: "2020", periodeValue: "2020", tanggal: "27 Februari 2021", deadline: "12 Maret 2021", status: "terlambat", sistem: "APOLO" },
+  { id: 49, jenis: "Laporan Keuangan Q4", jenisValue: "keuangan", periode: "Oktober - Desember 2019", periodeValue: "q4", tanggal: "10 Januari 2020", deadline: "31 Januari 2020", status: "berhasil", sistem: "APOLO" },
+  { id: 50, jenis: "Laporan Kinerja Tahunan", jenisValue: "kinerja", periode: "2020", periodeValue: "2020", tanggal: "8 Februari 2021", deadline: "28 Februari 2021", status: "berhasil", sistem: "APOLO" },
+
+
 ];
 
 // Data contoh untuk home page (campuran dari semua sistem)
 const homeReportsData = [
     { id: 1, jenis: "Laporan Keuangan Q1 2023", sistem: "APOLO", periode: "Januari - Maret 2023", tanggal: "15 April 2023", status: "berhasil" },
-    { id: 2, jenis: "E-Statement Tahunan 2022", sistem: "E-REPORTING", periode: "2022", tanggal: "28 Februari 2023", status: "terlambat" },
+    { id: 2, jenis: "E-Reporting Tahunan 2022", sistem: "E-REPORTING", periode: "2022", tanggal: "28 Februari 2023", status: "terlambat" },
     { id: 3, jenis: "Laporan Sanksi Administratif", sistem: "SIPINA", periode: "Semester I 2023", tanggal: "15 Juli 2023", status: "berhasil" },
     { id: 4, jenis: "Laporan Audit Internal", sistem: "APOLO", periode: "2022", tanggal: "20 Februari 2023", status: "tidak-berhasil" },
-    { id: 5, jenis: "E-Statement Triwulan III", sistem: "E-REPORTING", periode: "Juli - September 2023", tanggal: "10 Oktober 2023", status: "berhasil" }
+    { id: 5, jenis: "E-Reporting Triwulan III", sistem: "E-REPORTING", periode: "Juli - September 2023", tanggal: "10 Oktober 2023", status: "berhasil" }
 ];
 
 // DOM Elements
@@ -55,7 +99,7 @@ const searchResultCount = document.getElementById('search-result-count');
 const titles = {
     'home-page': { title: 'Dashboard IRS', breadcrumb: 'Dashboard' },
     'apolo-page': { title: 'Laporan APOLO', breadcrumb: 'Laporan / APOLO' },
-    'estatement-page': { title: 'Laporan e-reporting', breadcrumb: 'Laporan / e-Statement' },
+    'estatement-page': { title: 'Laporan e-reporting', breadcrumb: 'Laporan / e-Reporting' },
     'sipina-page': { title: 'Laporan SIPINA', breadcrumb: 'Laporan / SIPINA' },
     'administrasi-page': { title: 'Administrasi', breadcrumb: 'Administrasi' },
     'audit-page': { title: 'Audit Log', breadcrumb: 'Audit Log' },
@@ -72,7 +116,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Render tables
     renderHomeTable(homeReportsData);
-    renderApoloTable(apoloReportsData);
+    renderApoloTable(apoloReportsData); 
     
     // Set today's date as default for date filter
     const today = new Date().toISOString().split('T')[0];
@@ -249,9 +293,14 @@ function setupEventListeners() {
         clearFiltersBtn.addEventListener('click', resetFilters);
     }
     
-    // Search functionality
     if (searchApoloInput) {
         searchApoloInput.addEventListener('input', searchApoloReports);
+        // Tambah event listener untuk tombol Enter
+        searchApoloInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchApoloReports();
+            }
+        });
     }
     
     if (searchHomeInput) {
@@ -259,8 +308,12 @@ function setupEventListeners() {
     }
     
     if (searchBtn) {
-        searchBtn.addEventListener('click', searchApoloReports);
+        searchBtn.addEventListener('click', function(e) {
+            e.preventDefault(); 
+            searchApoloReports();
+        });
     }
+    
     
     // Card buttons
     cardBtns.forEach(btn => {
@@ -361,6 +414,13 @@ function navigateToPage(pageId) {
         // Update active menu items
         updateActiveMenu(pageId);
         
+        if (pageId === 'apolo-page') {
+            // Reset pencarian dan filter saat masuk ke halaman APOLO
+            if (searchApoloInput) searchApoloInput.value = '';
+            renderApoloTable(apoloReportsData);
+            updateApoloStats();
+        }
+        
         // Close sidebar on mobile
         if (window.innerWidth <= 1200) {
             sidebar.classList.remove('active');
@@ -406,7 +466,6 @@ function updateActiveMenu(pageId) {
         expandLaporanMenu();
     } else if (pageId === 'about-page' || pageId === 'faq-page') {
         // For About and FAQ, we don't highlight any menu item
-        // These pages are accessed from footer
     } else {
         const menuItem = document.querySelector(`.menu-item[data-page="${pageId.replace('-page', '')}"]`);
         if (menuItem) menuItem.classList.add('active');
@@ -470,13 +529,7 @@ function renderHomeTable(data) {
             <td>${report.periode}</td>
             <td>${report.tanggal}</td>
             <td>${statusBadge}</td>
-            <td>
-                <div class="action-buttons">
-                    <button class="action-btn view-only" title="View Only Mode">
-                        <i class="fas fa-eye"></i> Lihat
-                    </button>
-                </div>
-            </td>
+           
         `;
         
         homeTableBody.appendChild(row);
@@ -528,13 +581,7 @@ function renderApoloTable(data) {
             <td>${report.tanggal}</td>
             <td>${report.deadline}</td>
             <td>${statusBadge}</td>
-            <td>
-                <div class="action-buttons">
-                    <button class="action-btn view-only" title="View Only Mode">
-                        <i class="fas fa-eye"></i> Lihat
-                    </button>
-                </div>
-            </td>
+            
         `;
         
         apoloTableBody.appendChild(row);
@@ -620,85 +667,70 @@ function resetFilters() {
         const today = new Date().toISOString().split('T')[0];
         filterTanggal.value = today;
     }
-    if (searchApoloInput) searchApoloInput.value = '';
+    if (searchApoloInput) {
+        searchApoloInput.value = '';
+    }
     
+    // Render semua data
     renderApoloTable(apoloReportsData);
 }
 
 // Search APOLO reports
 function searchApoloReports() {
-    const searchTerm = searchApoloInput ? searchApoloInput.value.toLowerCase() : '';
+    const searchTerm = searchApoloInput ? searchApoloInput.value.toLowerCase().trim() : '';
     
-    if (!searchTerm) {
-        // If search is empty, apply filters if any
-        applyFilters();
-        return;
-    }
+    // Debug: log untuk memastikan fungsi dipanggil
+    console.log('searchApoloReports called, term:', searchTerm);
     
-    let filteredData = apoloReportsData;
+    let filteredData = [...apoloReportsData]; // Salin data
     
     // Apply existing filters first
-    const jenis = filterJenis ? filterJenis.value : 'all';
-    const status = filterStatus ? filterStatus.value : 'all';
-    const periode = filterPeriode ? filterPeriode.value : 'all';
-    const tanggal = filterTanggal ? filterTanggal.value : '';
-    
-    if (jenis !== 'all') {
-        filteredData = filteredData.filter(report => report.jenisValue === jenis);
+    if (filterJenis && filterJenis.value !== 'all') {
+        filteredData = filteredData.filter(report => report.jenisValue === filterJenis.value);
     }
     
-    if (status !== 'all') {
-        filteredData = filteredData.filter(report => report.status === status);
+    if (filterStatus && filterStatus.value !== 'all') {
+        filteredData = filteredData.filter(report => report.status === filterStatus.value);
     }
     
-    if (periode !== 'all') {
-        filteredData = filteredData.filter(report => report.periodeValue === periode);
+    if (filterPeriode && filterPeriode.value !== 'all') {
+        filteredData = filteredData.filter(report => report.periodeValue === filterPeriode.value);
     }
     
-    if (tanggal) {
-        const filterDate = new Date(tanggal);
+    if (filterTanggal && filterTanggal.value) {
+        const filterDate = new Date(filterTanggal.value);
         const filterMonth = filterDate.getMonth() + 1;
         const filterYear = filterDate.getFullYear();
         
         filteredData = filteredData.filter(report => {
+            // Extract month and year from report date
             const reportDateStr = report.tanggal;
             const reportParts = reportDateStr.split(' ');
-            const reportMonth = getMonthNumber(reportParts[1]);
-            const reportYear = parseInt(reportParts[2]);
-            
-            return reportYear === filterYear && reportMonth === filterMonth;
+            if (reportParts.length >= 3) {
+                const reportMonth = getMonthNumber(reportParts[1]);
+                const reportYear = parseInt(reportParts[2]);
+                return reportYear === filterYear && reportMonth === filterMonth;
+            }
+            return false;
         });
     }
     
-    // Then apply search filter
-    filteredData = filteredData.filter(report => 
-        report.jenis.toLowerCase().includes(searchTerm) ||
-        report.periode.toLowerCase().includes(searchTerm) ||
-        report.tanggal.toLowerCase().includes(searchTerm) ||
-        report.deadline.toLowerCase().includes(searchTerm)
-    );
+    if (searchTerm) {
+        filteredData = filteredData.filter(report => 
+            report.jenis.toLowerCase().includes(searchTerm) ||
+            report.periode.toLowerCase().includes(searchTerm) ||
+            report.tanggal.toLowerCase().includes(searchTerm) ||
+            report.deadline.toLowerCase().includes(searchTerm) ||
+            report.status.toLowerCase().includes(searchTerm)
+        );
+    }
+    
+    // Debug: log hasil filter
+    console.log('Filtered data count:', filteredData.length);
     
     renderApoloTable(filteredData);
 }
 
-// Search home reports
-function searchHomeReports() {
-    const searchTerm = searchHomeInput ? searchHomeInput.value.toLowerCase() : '';
-    
-    if (!searchTerm) {
-        renderHomeTable(homeReportsData);
-        return;
-    }
-    
-    const filteredData = homeReportsData.filter(report => 
-        report.jenis.toLowerCase().includes(searchTerm) ||
-        report.sistem.toLowerCase().includes(searchTerm) ||
-        report.periode.toLowerCase().includes(searchTerm) ||
-        report.tanggal.toLowerCase().includes(searchTerm)
-    );
-    
-    renderHomeTable(filteredData);
-}
 
 // Filter FAQ by category
 function filterFAQByCategory(category) {

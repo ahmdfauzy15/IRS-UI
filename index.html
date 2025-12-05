@@ -9,7 +9,6 @@
 </head>
 <body>
     <div class="container">
-        <!-- Sidebar akan dimuat via JavaScript -->
         <aside class="sidebar" id="sidebar">
             <!-- Sidebar content di-load dari components/sidebar.html -->
         </aside>
@@ -33,11 +32,12 @@
                         <p class="user-role">Pelapor</p>
                     </div>
                     <div class="notifications">
-                        <button class="notification-btn">
+                        <button class="notification-btn" onclick="window.location.href='notifikasi.html'">
                             <i class="fas fa-bell"></i>
                             <span class="notification-count">3</span>
                         </button>
                     </div>
+
                 </div>
             </header>
             
@@ -78,7 +78,6 @@
                 </section>
                 
                 <!-- Quick Access Cards -->
-                <!-- Quick Access Cards -->
                 <div class="cards-container">
                     <div class="card">
                         <div class="card-header">
@@ -91,8 +90,14 @@
                         <p>Aplikasi Pelaporan Online yang dikembangkan oleh Otoritas Jasa Keuangan (OJK) untuk melayani Lembaga Jasa Keuangan (LJK) dalam menyampaikan kewajiban pelaporan secara daring. Aplikasi ini bertujuan untuk menyederhanakan, menstandarisasi, dan meningkatkan efisiensi proses pelaporan ke OJK.</p>
                         <div class="card-footer">
                             <span class="card-info"><i class="fas fa-file-alt"></i> 12 Laporan</span>
-                            <button class="card-btn" data-page="apolo">Akses <i class="fas fa-arrow-right"></i></button>
+                            <button class="card-btn" 
+                                data-page="apolo" 
+                                onclick="window.location.href='https://pelaporan.id/Account/Login?PartnerSP=https%3A%2F%2Fapolo.ojk.go.id&RelayState=%2FError%2FNotFound'">
+                            Akses <i class="fas fa-arrow-right"></i>
+                        </button>
+
                         </div>
+                        
                     </div>
                     
                     <div class="card">
@@ -106,7 +111,11 @@
                         <p>sistem pelaporan elektronik yang digunakan oleh emiten atau perusahaan publik untuk menyampaikan laporan secara elektronik kepada Otoritas Jasa Keuangan.</p>
                         <div class="card-footer">
                             <span class="card-info"><i class="fas fa-file-alt"></i> 8 Laporan</span>
-                            <button class="card-btn" data-page="estatement">Akses <i class="fas fa-arrow-right"></i></button>
+                            <button class="card-btn" 
+                                    data-page="apolo" 
+                                    onclick="window.location.href='https://pelaporan.id/Account/Login?PartnerSP=https%3A%2F%2Fapolo.ojk.go.id&RelayState=%2FError%2FNotFound'">
+                                Akses <i class="fas fa-arrow-right"></i>
+                            </button>
                         </div>
                     </div>
                     
@@ -121,8 +130,11 @@
                         <p> Laporan informasi nasabah asing disampaikan secara daring melalui sistem penyampaian informasi nasabah asing</p>
                         <div class="card-footer">
                             <span class="card-info"><i class="fas fa-file-alt"></i> 4 Laporan</span>
-                            <button class="card-btn" data-page="sipina">Akses <i class="fas fa-arrow-right"></i></button>
-                        </div>
+                            <button class="card-btn" 
+                                    data-page="apolo" 
+                                    onclick="window.location.href='https://pelaporan.id/Account/Login?PartnerSP=https%3A%2F%2Fapolo.ojk.go.id&RelayState=%2FError%2FNotFound'">
+                                Akses <i class="fas fa-arrow-right"></i>
+                            </button>                        </div>
                     </div>
                 </div>
                 
@@ -197,7 +209,7 @@
                                     <th>Periode</th>
                                     <th>Tanggal Submit</th>
                                     <th>Status</th>
-                                    <th>Aksi</th>
+                                    <!-- <th>Aksi</th> -->
                                 </tr>
                             </thead>
                             <tbody id="home-table-body">
@@ -368,7 +380,7 @@
                                     <th>Tanggal Submit</th>
                                     <th>Deadline</th>
                                     <th>Status</th>
-                                    <th>Aksi</th>
+                                    <!-- <th>Aksi</th> -->
                                 </tr>
                             </thead>
                             <tbody id="apolo-table-body">
